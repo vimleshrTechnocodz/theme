@@ -1,0 +1,68 @@
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#courseslist').DataTable({
+            'iDisplayLength': 100,
+            'language': {
+                        searchPlaceholder: "Search Tutor..."
+                    }
+        });        
+    } );
+</script>
+    <div class="row tutor-section">
+        <div class="col-sm-9"> 
+            <div class="courseslist">
+            <table id="courseslist" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#data}}     
+                        <tr>
+                            <td>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="tutors-thum">
+                                        <!--<img src="{{{imageUrl}}}"/>   -->                                 
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h4>{{{category}}}</h4>
+                                    <h3>{{{fullname}}}</h3>
+                                    <div class="rating">                                    
+                                        <span class="connect-users">
+                                        {{{rated}}}
+                                        </span>
+                                    </div>
+                                    <!--<div class="description">
+                                        <p>{{{summary}}}</p>                            
+                                    </div>-->
+                                    <div class="tutor-bottm">  
+                                        <div class="comment">
+                                            <ul class="tc_meta float-left fn-414">{{{enrolmentIcon}}} {{{announcementsIcon}}}</ul>                                      
+                                        </div>                                      
+                                        <a href="{{{link}}}" class="get-course">Get Course</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </td>                
+                        </tr>
+                         {{/data}}    
+                    </tbody>
+                </table>
+                {{^data}}  
+                    <div>Data not found</div>
+                {{/data}}  
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="filter-list">
+            
+            </div>
+        </div>
+    </div>

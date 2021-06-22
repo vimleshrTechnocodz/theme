@@ -1,0 +1,161 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<style>
+.tutor-section{
+    margin-top:30px;
+    margin-bottom:80px;
+}
+#tutors thead{
+    display: none;
+}
+#tutors tbody tr:last-child td{
+    border-bottom: 1px solid #dee2e6;
+}
+.tutor-list{
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 15px 0;
+    border: 1px solid #ddd;
+}
+.tutor-list .dataTables_filter .form-control.form-control-sm{
+    position: absolute;
+    right: 20px;
+    height: 45px;
+    top: -11px;
+    width: 100%;
+}
+.tutor-list .dataTables_length{
+    display: none;
+}
+.tutor-list .dataTables_info{
+    margin-left: 15px;
+}
+.tutor-list .dataTables_filter{
+    margin-right: 15px
+}
+.tutor-list .dataTables_filter label{
+    
+}
+.tutor-list .dataTables_paginate{
+    margin-right: 15px !important;
+}
+.tutor-list .tutors-thum{
+    width: 100%;
+    min-height: 225px;
+    background: #22222275;
+    border-radius: 10px;
+}
+.tutor-list .description{
+    margin-bottom: 50px;
+}
+.tutor-list .description p{
+    height: 98px;
+    overflow-y: auto;
+}
+.tutor-list  .tutor-bottm{
+    float: left;
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    left: 15px;
+}
+.tutor-list  .tutor-bottm .comment{
+    float: left;
+    position: relative;
+}
+.connect-users,.comments{
+    margin-right: 15px;
+}
+.tutor-list .free-enrol-now{
+    float: right;
+    background: #ff1053;
+    border: 0;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+.filter-list{
+    background: #ddd;
+}
+.tutor-section{
+    margin-top:30px;
+    margin-bottom:80px;
+}
+#courseslist thead{
+    display: none;
+}
+#courseslist tbody tr:last-child td{
+    border-bottom: 1px solid #dee2e6;
+}
+.courseslist{
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 15px 0;
+    border: 1px solid #ddd;
+}
+.courseslist .dataTables_filter .form-control.form-control-sm{
+    position: absolute;
+    right: 20px;
+    height: 45px;
+    top: -11px;
+    width: 100%;
+}
+.courseslist .dataTables_length{
+    display: none;
+}
+.courseslist .dataTables_info{
+    margin-left: 15px;
+}
+.courseslist .dataTables_filter{
+    margin-right: 15px
+}
+.courseslist .dataTables_filter label{
+    
+}
+.courseslist .dataTables_paginate{
+    margin-right: 15px !important;
+}
+.courseslist .tutors-thum{
+    width: 100%;
+    min-height: 225px;
+    background: #22222275;
+    border-radius: 10px;
+}
+.courseslist .description{
+    margin-bottom: 50px;
+}
+.courseslist .description p{
+    height: 98px;
+    overflow-y: auto;
+}
+.courseslist  .tutor-bottm{
+    float: left;
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    left: 15px;
+}
+.courseslist  .tutor-bottm .comment{
+    float: left;
+    position: relative;
+}
+.connect-users,.comments{
+    margin-right: 15px;
+}
+.courseslist .get-course{
+    float: right;
+    background: #ff1053;
+    border: 0;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+.filter-list{
+    background: #ddd;
+}
+</style>

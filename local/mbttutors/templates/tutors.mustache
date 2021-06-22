@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tutors').DataTable({
+            'iDisplayLength': 100,
+            'language': {
+                        searchPlaceholder: "Search Tutor..."
+                    }
+        });        
+    } );
+</script>
+<div class="row tutor-section">
+    <div class="col-sm-9"> 
+        <div class="tutor-list">
+        <table id="tutors" class="table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>*</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#data}}                
+                    <tr>
+                        <td>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="tutors-thum"></div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h4>{{{coursename}}}</h4>
+                                <h3> {{{firstname}}} {{{lastname}}} </h3>
+                                <div class="rating">
+                                    <span></span>
+                                </div>
+                                <div class="description">
+                                    <p> {{{description}}}</p>                            
+                                </div>
+                                <div class="tutor-bottm">
+                                    <div class="comment">
+                                        <span class="connect-users"><i class="fa fa-user-o"></i> 200</span>
+                                        <span class="comments"><i class="fa fa-comment"></i> 200</span>
+                                    </div>
+                                    <a href="{{{link}}}" class="free-enrol-now" tutor-id="{{{userid}}}">Free Enrol Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </td>                
+                    </tr>  
+                    {{/data}}                   
+                </tbody>
+            </table>
+             {{^data}}  
+                <div>Data not found</div>
+              {{/data}}  
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="filter-list">
+        
+        </div>
+    </div>
+</div>
