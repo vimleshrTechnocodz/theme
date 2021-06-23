@@ -23,27 +23,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../config.php');
-require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
-require_once($CFG->dirroot . '/local/mbttutors/classes/mbttutors.php');
-global $DB,$USER,$CFG; 
-/*if(!isloggedin()){
-    $url = $CFG->wwwroot.'/login/index.php';
-    redirect($url, '', 10);
-}*/
-$PAGE->requires->js(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/js/mbttutors.js'));
-$PAGE->requires->css(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/css/style.css'));
+defined('MOODLE_INTERNAL') || die();
 
-$PAGE->set_url('/local/mbttutors/index.php');
-$PAGE->set_title(get_string('pluginname', 'local_mbttutors'));
-$PAGE->set_heading(get_string('heading', 'local_mbttutors'));
+/**
+ * Upgrade code for the Contact Form local plugin.
+ *
+ * @param int $oldversion - the version we are upgrading from.
+ * @return bool result
+ */
+function xmldb_local_mbttutors_upgrade($oldversion) {
 
-$mbttutors = new local_mbttutors();
-$results = $mbttutors->getTutorsList();
-// Display page header.
-echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_mbttutors/tutors',$results);
-echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
-// Display page footer.
-echo $OUTPUT->footer();
+    // Moodle v3.1.0 release upgrade line.
+    // Upgrade steps below.
 
+    return true;
+}

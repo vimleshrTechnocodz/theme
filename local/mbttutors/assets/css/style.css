@@ -65,7 +65,7 @@
 .connect-users,.comments{
     margin-right: 15px;
 }
-.tutor-list .free-enrol-now{
+.tutor-list .free-enrol-now,.tutor-list .btn-now{
     float: right;
     background: #ff1053;
     border: 0;

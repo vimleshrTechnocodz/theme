@@ -34,9 +34,10 @@ class local_mbttutors {
     
     public function getTutorsList(){   
         global $DB,$USER,$CFG; 
+        $ccnCourseHandler = new ccnCourseHandler();
         $sql = "SELECT distinct 
             u.id as userid, 
-            c.id, 
+            c.id as courseid, 
             c.fullname as coursename, 
             u.username, 
             u.firstname, 
@@ -46,21 +47,29 @@ class local_mbttutors {
             cocoon_course as c, 
             cocoon_role_assignments AS ra, 
             cocoon_user AS u, 
-            cocoon_context AS ct 
-            WHERE c.id = ct.instanceid AND 
+            cocoon_context AS ct,
+            cocoon_user_info_data as info_data 
+            WHERE 
+                c.id = ct.instanceid AND 
                 ra.roleid =3 AND 
                 ra.userid = u.id AND 
-                ct.id = ra.contextid;";
+                ct.id = ra.contextid AND
+                info_data.userid = u.id AND
+                info_data.data='Tutor';";
       //GROUP BY u.username
         $tutors = $DB->get_records_sql($sql);
         $data = array();        
-        foreach($tutors as $key=>$tutor){
+        foreach($tutors as $key=>$tutor){            
+            $ccnCourse = $ccnCourseHandler->ccnGetCourseDetails($tutor->courseid);             
             $data[$key] = $tutor;
+            $data[$key]->categoryName = $ccnCourse->categoryName;
             if(isloggedin()){
-                $data[$key]->link =  $CFG->wwwroot.'/local/mbttutors/tutorcourses.php?tutorid='.$tutor->userid;
+                $data[$key]->link =  '#';
+                $data[$key]->class = 'free-enrol-now';
             }else{
                 $data[$key]->link =  $CFG->wwwroot.'/login/index.php';
-            }
+                $data[$key]->class = '';
+            }           
         }
         $results = new stdClass();
         $results->data = array_values($data);

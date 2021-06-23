@@ -11,7 +11,38 @@ require(['core/first','jquery','jqueryui','core/ajax'],function(core, $, bootstr
         });
         $('.get-course').click(function(e){
             e.preventDefault();
-            alert("Tutor Notify Successfully");
+            alert("Enrolled successfully");
         });
+        $('.free-enrol-now').click(function(e){
+            e.preventDefault();
+            var url = M.cfg.wwwroot+'/local/mbttutors/freeenrolled.php';           
+            var tutorid = $(this).attr('tutor-id');
+            $.ajax({
+                type: 'post',
+                url: url,
+                data: {tutorid:tutorid},
+                beforeSend: function() {               
+                   
+                },
+                success: function (data) {
+                    if(data){
+                        if(data==1){
+                            alert('Enrolled successfully');
+                            window.location.href = M.cfg.wwwroot+"/my/";
+                        }else{                        
+                            alert("Already enrolled");  
+                            window.location.href = M.cfg.wwwroot+"/my/";                  
+                        }
+                    }else{
+                        alert("Not  enrolled, please contact"); 
+                    }                    
+                }
+              });
+            //alert("Enrolled successfully");
+        });
+        
+        setTimeout(function() {
+            jQuery('#termsandconditions').modal('show');
+          }, 1000);  
     } );
 });

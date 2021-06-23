@@ -23,9 +23,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once('../../config.php');
-require_once($CFG->dirroot . '../course/renderer.php');
-require_once($CFG->dirroot . '../theme/edumy/ccn/course_handler/ccn_course_handler.php');
-require_once($CFG->dirroot . '../theme/edumy/ccn/mdl_handler/ccn_mdl_handler.php');
+require_once($CFG->dirroot . '/course/renderer.php');
+require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
+require_once($CFG->dirroot . '/theme/edumy/ccn/mdl_handler/ccn_mdl_handler.php');
 require_once($CFG->dirroot . '/local/mbttutors/classes/mbttutors.php');
 global $DB,$USER,$CFG; 
 
@@ -52,5 +52,5 @@ $results = $mbttutors->getTutorCourses($tutorid);
 echo $OUTPUT->header();
 
 echo $OUTPUT->render_from_template('local_mbttutors/tutorcourses',$results);
-
+echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
 echo $OUTPUT->footer();

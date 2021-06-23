@@ -22,28 +22,30 @@
  * @author     Techno
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 require_once('../../config.php');
-require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 require_once($CFG->dirroot . '/local/mbttutors/classes/mbttutors.php');
+require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 global $DB,$USER,$CFG; 
-/*if(!isloggedin()){
-    $url = $CFG->wwwroot.'/login/index.php';
-    redirect($url, '', 10);
-}*/
-$PAGE->requires->js(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/js/mbttutors.js'));
-$PAGE->requires->css(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/css/style.css'));
 
-$PAGE->set_url('/local/mbttutors/index.php');
-$PAGE->set_title(get_string('pluginname', 'local_mbttutors'));
-$PAGE->set_heading(get_string('heading', 'local_mbttutors'));
+$tutorid = optional_param('tutorid', 0, PARAM_INT);
+
 
 $mbttutors = new local_mbttutors();
-$results = $mbttutors->getTutorsList();
-// Display page header.
-echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_mbttutors/tutors',$results);
-echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
-// Display page footer.
-echo $OUTPUT->footer();
-
+$tutorcourses = $mbttutors->getTutorCourses($tutorid);
+$check = 0;
+foreach($tutorcourses->data as $cours){       
+    $context = context_course::instance($cours->id);    
+    // What role to enrol as?
+    $studentroleid = $DB->get_field('role', 'id', array('shortname' => 'student'));
+    if (!is_enrolled($context, $USER->id)) {
+    // Not already enrolled so try enrolling them.
+        if (!enrol_try_internal_enrol($cours->id, $USER->id, $studentroleid, time())) {
+        // There's a problem.
+            throw new moodle_exception('unabletoenrolerrormessage', 'langsourcefile');
+        }else{
+            $check = 1;
+        }
+    }
+}
+print_r($check);
+die;
