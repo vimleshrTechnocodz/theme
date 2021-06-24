@@ -32,10 +32,20 @@ defined('MOODLE_INTERNAL') || die();
  */
 class local_mbttutors {
     
-    public function getTutorsList($cat_id){         
+    public function getTutorsList($cat_id=0,$filtercountry='',$state=''){         
         global $DB,$USER,$CFG; 
         $ccnCourseHandler = new ccnCourseHandler();
-        if($cat_id){
+        if($cat_id or !empty($filtercountry) or !empty($state)){
+            $condition="";
+            if($cat_id){
+                $condition=" AND cc.id = $cat_id";
+            }
+            if(!empty($filtercountry)){
+                $condition=$condition." AND u.country = '$filtercountry'";
+            }
+            /*if(!empty($state)){
+                $condition=$condition." AND info_data.data = '$state'";
+            }*/
             $sql = "SELECT distinct 
             u.id as userid, 
             c.id as courseid, 
@@ -52,15 +62,15 @@ class local_mbttutors {
             cocoon_user AS u, 
             cocoon_context AS ct,
             cocoon_user_info_data as info_data 
-            WHERE 
+            WHERE
                 c.id = ct.instanceid AND 
-                cc.id = c.category AND
-                cc.id = $cat_id AND
+                cc.id = c.category AND                
                 ra.roleid =3 AND 
                 ra.userid = u.id AND 
                 ct.id = ra.contextid AND
                 info_data.userid = u.id AND
-                info_data.data='Tutor';";
+                info_data.data='Tutor' $condition
+                ;";
         }else{
             $sql = "SELECT distinct 
             u.id as userid, 
@@ -88,11 +98,23 @@ class local_mbttutors {
       //GROUP BY u.username
         $tutors = $DB->get_records_sql($sql);
         $data = array();        
-        foreach($tutors as $key=>$tutor){            
+        foreach($tutors as $key=>$tutor){
+            if(!empty($state)){
+                $sql="SELECT *from cocoon_user_info_data WHERE userid=$tutor->userid AND data='$state'";
+                $checkSate = $DB->get_records_sql($sql);
+                if(!$checkSate){                   
+                    continue;
+                }                
+            }            
             $ccnCourse = $ccnCourseHandler->ccnGetCourseDetails($tutor->courseid);             
             $data[$key] = $tutor;
             $data[$key]->categoryName = $ccnCourse->categoryName;
-            if(isloggedin()){
+            if ($usercontext = context_user::instance($tutor->userid, IGNORE_MISSING)) {
+                $url = moodle_url::make_pluginfile_url($usercontext->id, 'user', 'icon', null, '/', 'f3');                
+                $data[$key]->profilePic = $url;
+            }
+            
+            if(isloggedin() and $USER->id!=1){
                 $data[$key]->link =  '#';
                 $data[$key]->class = 'free-enrol-now';
             }else{
@@ -220,10 +242,17 @@ class local_mbttutors {
             foreach($results as $key=>$result){ 
                 $data[$key] = $result;
                 $data[$key]->link =  $CFG->wwwroot.'/local/mbttutors/?cat_id='.$result->id;
-            }
-           
+            }           
             return $data;
         }
         return new stdClass();
+    }
+    public function getCountries(){
+        $countries = get_string_manager()->get_list_of_countries();
+        foreach($countries as $key=>$country){     
+            $data[$key]->country_name =  $country;
+            $data[$key]->country_code =  $key;
+        }
+        return $data;
     }
 }

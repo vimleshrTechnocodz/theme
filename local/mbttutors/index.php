@@ -27,12 +27,10 @@ require_once('../../config.php');
 require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 require_once($CFG->dirroot . '/local/mbttutors/classes/mbttutors.php');
 $cat_id = optional_param('cat_id', 0, PARAM_INT);
-
+$filtercountry = optional_param('filtercountry', '', PARAM_RAW);
+$state = optional_param('state', '', PARAM_RAW);
 global $DB,$USER,$CFG; 
-/*if(!isloggedin()){
-    $url = $CFG->wwwroot.'/login/index.php';
-    redirect($url, '', 10);
-}*/
+
 $PAGE->requires->js(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/js/mbttutors.js'));
 $PAGE->requires->css(new moodle_url($CFG->wwwroot.'/local/mbttutors/assets/css/style.css'));
 
@@ -42,7 +40,7 @@ $PAGE->set_heading(get_string('heading', 'local_mbttutors'));
 
 $mbttutors = new local_mbttutors();
 
-$results = $mbttutors->getTutorsList($cat_id);
+$results = $mbttutors->getTutorsList($cat_id,$filtercountry,$state);
 
 $mbtCategorie = $mbttutors->mbtCategorie('mbtmaincategory');
 $datalist = new stdClass();
@@ -51,14 +49,16 @@ if($mbtCategorie){
     $datalist->mbtSubCategories = array_values($mbtSubCategories);
 }
 
+$datalist->countries = array_values($mbttutors->getCountries());  
+
 // Display page header.
 echo $OUTPUT->header();
-/*echo '<pre>';
-    print_r($mbtSubCategories);
-    print_r($datalist);
-echo '</pre>';*/
+// echo '<pre>';
+//     print_r($datalist);
+// echo '</pre>';
 echo $OUTPUT->render_from_template('local_mbttutors/tutors',$results);
 echo $OUTPUT->render_from_template('local_mbttutors/filters',$datalist);
+echo $OUTPUT->render_from_template('local_mbttutors/loader',[]);
 echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
 // Display page footer.
 echo $OUTPUT->footer();

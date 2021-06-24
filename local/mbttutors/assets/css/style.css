@@ -38,16 +38,37 @@
     margin-right: 15px !important;
 }
 .tutor-list .tutors-thum{
+    position: relative;
     width: 100%;
     min-height: 225px;
     background: #22222275;
     border-radius: 10px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    transition: .5s;
+}
+.tutor-list .tutors-thum:hover::after{
+    content: "+";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00000063;
+    transition: .5s;
+    border-radius: 10px;
+    font-size: 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .tutor-list .description{
     margin-bottom: 50px;
 }
 .tutor-list .description p{
-    height: 98px;
+   
     overflow-y: auto;
 }
 .tutor-list  .tutor-bottm{
@@ -155,9 +176,9 @@
 }
 .filter-list{
     padding: 15px;
-    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 .filter-list h3{
     font-weight: normal;
@@ -169,6 +190,74 @@
     padding: 5px 0;
     border-bottom: 1px solid #ddd;
 }
+.filter-list .form-group{
+    margin: 0;
+}
+.filter-list ul li label{
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+.filter-list ul li label span{
+    width: 90%;
+    display: inline-block;
+}
+.filter-list .btn.btn-info{
+    width: 100%
+}
+.filter-list ul li label input[type=radio]{
+    float: right;    
+    margin-top: 5px;
+}
 .filter-list ul li a{
     color: #000;
 }
+.loading{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #0000009c;
+    z-index: 99;
+    text-align: center;
+    display: none;
+}
+.loader {
+    width: 200px;
+    height: 80px;
+    padding-top: 40vh;
+    margin: auto;
+    display: flex;
+  }
+  .circle {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    animation: jump 1s linear infinite;
+    margin: 0 15px;
+  }
+  .caption {
+    margin: auto;
+    font-family: arial;
+    font-size: 20px;
+    color: white;
+  }
+  #b {
+    animation-delay: 0.2s;
+  }
+  #c {
+    animation-delay: 0.4s;
+  }
+  @keyframes jump {
+    0% {
+      margin-top: 0;
+    }
+    35% {
+      margin-top: -75px;
+    }
+    70% {
+      margin-top: 0px;
+    }
+  }

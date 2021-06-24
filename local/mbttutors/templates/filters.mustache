@@ -1,12 +1,47 @@
     <div class="col-sm-3">
+        <form action="" method='get'>
+        <div class="filter-list">           
+            <div class="form-group">                
+                <button type="submit" class="btn btn-info">Apply Filter</button>
+            </div>
+        </div>
+        <div class="filter-list">
+            <h3>Countries</h3>
+            <div class="form-group">                
+                <select name="filtercountry" id="filtercountry" class="form-control">
+                    <option value="">Select Country</option>
+                    {{#countries}}
+                        <option value="{{{country_code}}}">{{{country_name}}}</option>
+                    {{/countries}}
+                </select>
+            </div>
+        </div>
+        <div class="filter-list">
+            <h3>State</h3>
+            <div class="form-group">                
+                <input type="text" id="fstate" name="state" class="form-control"/>
+            </div>
+        </div>
         <div class="filter-list">
             <h3>MBT Categories</h3>
             <ul>
-                    <li><a href="?cat_id=">Show All</a></li>
+                    <li>
+                    <div class="form-group">
+                     <label>Show All <input type="radio" name="cat_id" value=""/>   
+                     </label>                      
+                     </div>
+                    </li>
                 {{#mbtSubCategories}}   
-                    <li><a href="{{{link}}}">{{{name}}}</a></li>
+                    <li>
+                     <div class="form-group">
+                     <label><span>{{{name}}}</span> <input type="radio" name="cat_id" value="{{{id}}}"/>    </label>
+                     
+                     </div>
+                    </li>
                 {{/mbtSubCategories}}   
             </ul>
+            
         </div>
+        </form>
     </div>
 </div>
