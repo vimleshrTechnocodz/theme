@@ -13,6 +13,7 @@
     border-radius: 5px;
     padding: 15px 0;
     border: 1px solid #ddd;
+    width: 100%;
 }
 .tutor-list .dataTables_filter .form-control.form-control-sm{
     position: absolute;
@@ -74,12 +75,11 @@
     padding: 5px 15px;
     border-radius: 20px;
 }
-.filter-list{
-    background: #ddd;
-}
+
 .tutor-section{
-    margin-top:30px;
-    margin-bottom:80px;
+    margin-top: 0;
+    margin-bottom: 80px;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 12%);
 }
 #courseslist thead{
     display: none;
@@ -154,5 +154,21 @@
     border-radius: 20px;
 }
 .filter-list{
-    background: #ddd;
+    padding: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.filter-list h3{
+    font-weight: normal;
+    padding: 0px 0 5px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.filter-list ul li{
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+.filter-list ul li a{
+    color: #000;
 }

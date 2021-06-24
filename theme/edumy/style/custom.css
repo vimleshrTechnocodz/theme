@@ -7,3 +7,43 @@
  *
  *
  */
+
+
+ .logo-box{
+    -webkit-box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
+    -moz-box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
+    box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
+  padding: 50px;
+  text-align: center;
+  border-radius: 20px;
+  background: #fff;
+  }
+  .logo-box img{
+    max-height: 116px;
+  }
+
+
+
+.footer_one {
+    padding: 0;
+}
+
+.ccn_footer_style_2 .footer_bottom_area.home3 {
+    border-top: 1px solid #40b2dd;
+}
+
+.footer_bottom_area.home3 .copyright-widget p, .footer_bottom_area.home4 .copyright-widget p {
+    color: #fff;
+}
+
+.footer_menu_widget ul li a, .footer_menu_widget a {
+    color: #fff;
+    font-size: 13px;
+}
+.mbtplat {
+    border: 1px solid #fff;
+}
+
+.top-html-block{
+    background: #f8f8f8;
+}

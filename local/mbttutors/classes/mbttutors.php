@@ -32,10 +32,37 @@ defined('MOODLE_INTERNAL') || die();
  */
 class local_mbttutors {
     
-    public function getTutorsList(){   
+    public function getTutorsList($cat_id){         
         global $DB,$USER,$CFG; 
         $ccnCourseHandler = new ccnCourseHandler();
-        $sql = "SELECT distinct 
+        if($cat_id){
+            $sql = "SELECT distinct 
+            u.id as userid, 
+            c.id as courseid, 
+            c.fullname as coursename, 
+            cc.name as catname,
+            u.username, 
+            u.firstname, 
+            u.lastname,
+            u.email,
+            u.description FROM 
+            cocoon_course as c, 
+            cocoon_course_categories as cc,
+            cocoon_role_assignments AS ra, 
+            cocoon_user AS u, 
+            cocoon_context AS ct,
+            cocoon_user_info_data as info_data 
+            WHERE 
+                c.id = ct.instanceid AND 
+                cc.id = c.category AND
+                cc.id = $cat_id AND
+                ra.roleid =3 AND 
+                ra.userid = u.id AND 
+                ct.id = ra.contextid AND
+                info_data.userid = u.id AND
+                info_data.data='Tutor';";
+        }else{
+            $sql = "SELECT distinct 
             u.id as userid, 
             c.id as courseid, 
             c.fullname as coursename, 
@@ -56,6 +83,8 @@ class local_mbttutors {
                 ct.id = ra.contextid AND
                 info_data.userid = u.id AND
                 info_data.data='Tutor';";
+        }
+        
       //GROUP BY u.username
         $tutors = $DB->get_records_sql($sql);
         $data = array();        
@@ -172,5 +201,29 @@ class local_mbttutors {
             $totalAverage = round($getAverage->average * 2) / 2;
         }
         return $totalAverage;
+    }
+
+    public function mbtCategorie($idnumber){
+        global $DB,$USER,$CFG;     
+        $sql = "SELECT * FROM `cocoon_course_categories` WHERE idnumber='$idnumber'";
+        $results = $DB->get_record_sql($sql);
+        if($results){
+            return $results;
+        }
+        return false;
+    }
+    public function mbtSubCategories($id){
+        global $DB,$USER,$CFG;     
+        $sql = "SELECT * FROM `cocoon_course_categories` WHERE parent=$id";
+        $results = $DB->get_records_sql($sql);
+        if($results){
+            foreach($results as $key=>$result){ 
+                $data[$key] = $result;
+                $data[$key]->link =  $CFG->wwwroot.'/local/mbttutors/?cat_id='.$result->id;
+            }
+           
+            return $data;
+        }
+        return new stdClass();
     }
 }

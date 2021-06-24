@@ -26,6 +26,8 @@
 require_once('../../config.php');
 require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 require_once($CFG->dirroot . '/local/mbttutors/classes/mbttutors.php');
+$cat_id = optional_param('cat_id', 0, PARAM_INT);
+
 global $DB,$USER,$CFG; 
 /*if(!isloggedin()){
     $url = $CFG->wwwroot.'/login/index.php';
@@ -39,10 +41,24 @@ $PAGE->set_title(get_string('pluginname', 'local_mbttutors'));
 $PAGE->set_heading(get_string('heading', 'local_mbttutors'));
 
 $mbttutors = new local_mbttutors();
-$results = $mbttutors->getTutorsList();
+
+$results = $mbttutors->getTutorsList($cat_id);
+
+$mbtCategorie = $mbttutors->mbtCategorie('mbtmaincategory');
+$datalist = new stdClass();
+if($mbtCategorie){
+    $mbtSubCategories = $mbttutors->mbtSubCategories($mbtCategorie->id);    
+    $datalist->mbtSubCategories = array_values($mbtSubCategories);
+}
+
 // Display page header.
 echo $OUTPUT->header();
+/*echo '<pre>';
+    print_r($mbtSubCategories);
+    print_r($datalist);
+echo '</pre>';*/
 echo $OUTPUT->render_from_template('local_mbttutors/tutors',$results);
+echo $OUTPUT->render_from_template('local_mbttutors/filters',$datalist);
 echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
 // Display page footer.
 echo $OUTPUT->footer();
