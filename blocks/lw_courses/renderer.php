@@ -110,6 +110,11 @@ class block_lw_courses_renderer extends plugin_renderer_base {
             $html .= html_writer::tag('a', 'Change View', array('href' => '#', 'id' => 'box-or-lines',
             'styles' => '', 'class' => "$courseclass col-md-$startvalue span$startvalue $courseclass"));
         }
+        $html .="<div class='filter-by-category'>
+        <select class='category-list'>
+            <option value=''>Select category</option>
+        </select>
+        </div>";
         $html .= html_writer::tag('div', '', array("class" => "hidden startgrid $courseclass", "grid-size" => $gridsplit));
         $html .= html_writer::div('', 'box flush');
 
@@ -121,6 +126,7 @@ class block_lw_courses_renderer extends plugin_renderer_base {
             'r.shortname AS roleshortname, rn.name AS rolecoursealias';
 
         $html .= html_writer::start_div('lw_courses_list');
+
         foreach ($courses as $key => $course) {
 
             // If moving course, then don't show course which needs to be moved.
