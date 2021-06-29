@@ -30,8 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2016-2019 TNG Consulting Inc. - www.tngconsulting.ca
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_mbttutors {
-    
+class local_mbttutors {    
     public function getTutorsList($cat_id=0,$filtercountry='',$state=''){         
         global $DB,$USER,$CFG; 
         $ccnCourseHandler = new ccnCourseHandler();
@@ -42,10 +41,7 @@ class local_mbttutors {
             }
             if(!empty($filtercountry)){
                 $condition=$condition." AND u.country = '$filtercountry'";
-            }
-            /*if(!empty($state)){
-                $condition=$condition." AND info_data.data = '$state'";
-            }*/
+            }            
             $sql = "SELECT distinct 
             u.id as userid, 
             c.id as courseid, 
@@ -254,5 +250,33 @@ class local_mbttutors {
             $data[$key]->country_code =  $key;
         }
         return $data;
+    }
+    public function getTutors(){
+        global $DB,$USER,$CFG;   
+        $sql = "SELECT 
+                u.id as userid, 
+                u.firstname, 
+                u.lastname,
+                u.email,
+                u.city,
+                u.country,
+                u.lastaccess,
+                info_data.id,
+                info_data.data 
+                FROM `cocoon_user` u JOIN cocoon_user_info_data  info_data ON u.id=info_data.userid  
+                WHERE info_data.data='Tutor'"; 
+        $results = $DB->get_records_sql($sql);
+        if($results){
+            foreach($results as $key=>$result){ 
+                $tcourses = $this->getTutorCourses($result->userid);
+                $data[$key] = $result;
+                $data[$key]->lastaccess = date('m/d/Y', $result->lastaccess);
+                $data[$key]->totalCourses = count($tcourses);
+                $data[$key]->link = $CFG->wwwroot."/user/editadvanced.php?id=".$result->userid;
+            }  
+            $toturslist->data = array_values($data);         
+            return $toturslist;
+        }
+        return new stdClass();        
     }
 }

@@ -72,6 +72,17 @@
   {{/action}}
   {{^action}}
   <li>
+    <a href="/theme/local/mbttutors/tutorslist.php" style="padding: 0;">
+    <div class="no-action" data-key="{{key}}" data-isexpandable="{{isexpandable}}" data-indent="{{get_indent}}" data-showdivider="{{showdivider}}" data-type="{{type}}" data-nodetype="{{nodetype}}" data-collapse="{{collapse}}"
+      data-forceopen="{{forceopen}}" data-isactive="{{isactive}}" data-hidden="{{hidden}}" data-preceedwithhr="{{preceedwithhr}}" {{#parent.key}}data-parent-key="{{.}}" {{/parent.key}}>
+      {{#icon.pix}}
+        {{#pix}}{{{icon.pix}}}, {{{icon.component}}}, {{{icon.alt}}}{{/pix}}
+      {{/icon.pix}}
+      <span class="ccn_dashnav_item">Tutors List</span>
+    </div>
+    </a>
+  </li>
+  <li>
     <a href="/theme/admin/coursecatalog.php" style="padding: 0;">
     <div class="no-action" data-key="{{key}}" data-isexpandable="{{isexpandable}}" data-indent="{{get_indent}}" data-showdivider="{{showdivider}}" data-type="{{type}}" data-nodetype="{{nodetype}}" data-collapse="{{collapse}}"
       data-forceopen="{{forceopen}}" data-isactive="{{isactive}}" data-hidden="{{hidden}}" data-preceedwithhr="{{preceedwithhr}}" {{#parent.key}}data-parent-key="{{.}}" {{/parent.key}}>

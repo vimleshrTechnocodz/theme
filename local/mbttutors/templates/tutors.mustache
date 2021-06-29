@@ -26,10 +26,13 @@
                         <tr>
                             <td>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <a href="/theme/user/profile.php?id={{{userid}}}">
-                                        <div class="tutors-thum" style="background-image:url({{{profilePic}}})"></div>
-                                    </a>
+                                <div class="col-sm-4">                                    
+                                    <div class="tutors-thum thumb" style="background-image:url({{{profilePic}}})">
+                                        <div class="overlay">
+                                            <div class="tag">{{{categoryName}}}</div>
+                                            <a class="tc_preview_course" href="/theme/user/profile.php?id={{{userid}}}">Preview Tutor</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-8">
                                     <h4>{{{categoryName}}}</h4>

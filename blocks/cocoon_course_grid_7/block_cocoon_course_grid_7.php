@@ -3,7 +3,8 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot. '/course/renderer.php');
 require_once($CFG->dirroot. '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 require_once($CFG->dirroot. '/theme/edumy/ccn/block_handler/ccn_block_handler.php');
-
+require_once($CFG->dirroot. '/course/lib.php');
+require_once($CFG->libdir. '/coursecatlib.php');
 class block_cocoon_course_grid_7 extends block_base {
 
     public function init() {
@@ -167,10 +168,14 @@ class block_cocoon_course_grid_7 extends block_base {
             $courses->$course = $courseObj;
           }
           $categories = array();
-          foreach ($courses as $key => $course) {
+          /*foreach ($courses as $key => $course) {
             $categories[$course->category] = $course->category_name;
           }
-          $categories = array_unique($categories);
+          $categories = array_unique($categories);*/
+          $root_category = $DB->get_records('course_categories',array('parent'=>0));
+          foreach ($root_category as $key => $category) {
+            $categories[$category->id] = $category->name;
+          }          
         }
 
         $this->content->text .= '
@@ -214,7 +219,30 @@ class block_cocoon_course_grid_7 extends block_base {
         // $courses = null;
       if(!empty($this->config->courses)){
         $chelper = new coursecat_helper();
-        $total_courses = count($coursesArr);
+        $courses = array();
+        foreach($categories as $key=>$category){
+          $sql = "SELECT *FROM cocoon_course_categories WHERE parent = $key";
+          $childCourses = $DB->get_records_sql($sql);
+          if($childCourses){
+            foreach($childCourses as $keych=>$childCours){
+              $cat = coursecat::get($keych);
+              $children_courses = $cat->get_courses();  
+              foreach($children_courses as $course) {
+                $courses[$course->id]->id=$course->id;
+                $courses[$course->id]->category=$key;
+                $courses[$course->id]->category_name=$category;
+              }  
+            }
+          }
+          $cat = coursecat::get($key);
+          $children_courses = $cat->get_courses();  
+          foreach($children_courses as $course) {
+            $courses[$course->id]->id=$course->id;
+            $courses[$course->id]->category=$key;
+            $courses[$course->id]->category_name=$category;
+          }        
+        }        
+        $total_courses = count($courses);
 
         if($total_courses < 2) {
           $col_class = 'col-md-12';
@@ -302,7 +330,7 @@ $this->content->text .='
         </div></div>';
 
       if(!empty($this->content->button_text) && !empty($this->content->button_link)){
-      $this->content->text .='
+     /* $this->content->text .='
       <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="courses_all_btn text-center">
@@ -321,7 +349,7 @@ $this->content->text .='
           data-ccn-bdrrd="button_bdrrd"
           >'.format_text($this->content->button_text, FORMAT_HTML, array('filter' => true)).'</a>
         </div>
-      </div></div>'  ;
+      </div></div>'  ;*/
       }
 $this->content->text .='
 

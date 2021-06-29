@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tutorslist').DataTable({
+            'iDisplayLength': 100,
+            'language': {
+                        searchPlaceholder: "Search Tutor..."
+                    }
+        });        
+    } );
+</script>
+
+
+    <div class="col-sm-12">
+        <div class="row tutor-section"> 
+            <div class="tutor-list">
+            <table id="tutorslist" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Full name</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>All Courses</th>
+                            <th>Last Access</th>                            
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#data}}                
+                        <tr>
+                            <td>{{{firstname}}} {{{lastname}}}</td>
+                            <td>{{{email}}}</td>
+                            <td>{{{city}}}</td>
+                            <td>{{{country}}}</td>
+                            <th>({{{totalCourses}}})</th>
+                            <td>{{{lastaccess}}}</td>
+                            <td><a href="{{{link}}}"/><i class="icon fa flaticon-settings fa-fw " title="Edit" aria-label="Edit"></i></td>               
+                        </tr>  
+                        {{/data}}                   
+                    </tbody>
+                </table>
+                {{^data}}  
+                    <div>Data not found</div>
+                {{/data}}  
+            </div>
+        </div>    
