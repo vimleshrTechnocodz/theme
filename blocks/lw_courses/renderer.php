@@ -110,9 +110,15 @@ class block_lw_courses_renderer extends plugin_renderer_base {
             $html .= html_writer::tag('a', 'Change View', array('href' => '#', 'id' => 'box-or-lines',
             'styles' => '', 'class' => "$courseclass col-md-$startvalue span$startvalue $courseclass"));
         }
+        $root_category = $DB->get_records('course_categories',array('parent'=>0));
+        foreach($root_category as $category){
+            $catname=$category->name;
+            $options.="<option value='$catname'>$catname</option>";
+        }
         $html .="<div class='filter-by-category'>
         <select class='category-list'>
             <option value=''>Select category</option>
+            $options
         </select>
         </div>";
         $html .= html_writer::tag('div', '', array("class" => "hidden startgrid $courseclass", "grid-size" => $gridsplit));
@@ -214,15 +220,25 @@ class block_lw_courses_renderer extends plugin_renderer_base {
                 $currentcategory = core_course_category::get($course->category, IGNORE_MISSING);
                 if ($currentcategory !== null) {
                     $html .= html_writer::start_tag('div', array('class' => 'categorypath'));
-                    if ($config->showcategories == BLOCKS_LW_COURSES_SHOWCATEGORIES_FULL_PATH) {
-                        foreach ($currentcategory->get_parents() as $categoryid) {
-                            $category = core_course_category::get($categoryid, IGNORE_MISSING);
-                            if ($category !== null) {
-                                $html .= $category->get_formatted_name().' / ';
+                    if ($config->showcategories != BLOCKS_LW_COURSES_SHOWCATEGORIES_FULL_PATH) {
+                        if($currentcategory->get_parents()){
+                            foreach ($currentcategory->get_parents() as $categoryid) {                           
+                                $category = core_course_category::get($categoryid, IGNORE_MISSING);
+                                if ($category !== null) {
+                                    $html .= $category->get_formatted_name();
+                                    break;
+                                }else{
+                                    $html .= $currentcategory->get_formatted_name();
+                                    break;
+                                }
                             }
+                        }else{
+                            $html .= $currentcategory->get_formatted_name(); 
                         }
+                    }else{
+                        $html .= $currentcategory->get_formatted_name();
                     }
-                    $html .= $currentcategory->get_formatted_name();
+                    
                     $html .= html_writer::end_tag('div');
                 }
             }

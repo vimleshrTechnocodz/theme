@@ -162,6 +162,11 @@ if (empty($CFG->forcedefaultmymoodle) && $PAGE->user_allowed_editing()) {
 }
 
 echo $OUTPUT->header();
+if(($USER->profile['UserType']=='Student' or $USER->profile['UserType']=='Tutor') and empty($_SESSION["popup"]) ){
+    $_SESSION["popup"] = "popup";
+    echo $OUTPUT->render_from_template('local_mbttutors/popup',[]);
+}
+    
 
 if (core_userfeedback::should_display_reminder()) {
     core_userfeedback::print_reminder_block();

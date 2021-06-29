@@ -92,8 +92,8 @@
     outline: none;
     color: #fff;
     font-weight: 600;
-    font-size: 18px;
-    padding: 5px 15px;
+    font-size: 14px;
+    padding: 5px 22px;
     border-radius: 20px;
 }
 
@@ -261,3 +261,41 @@
       margin-top: 0px;
     }
   }
+
+
+#tutors td h4{
+    font-size: 14px;
+    font-family: "Open Sans";
+    color: rgb(126, 126, 126);
+    line-height: 1.714;
+  }
+  #tutors td  h3{
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.42857;
+    color: #0a0a0a; 
+}
+
+.tutor-list .description p {
+    font-size: 14px;
+    font-family: "Open Sans";
+    color: rgb(126, 126, 126);
+    line-height: 1.714;
+}
+
+.connect-users, .comments {
+    color: #6f7074;
+}
+
+#tutors_wrapper>.row:first-child{
+    padding: 20px;
+}
+
+#tutors td:hover{
+ background: #f9fafc;
+}
+
+#tutors td, .table th{
+    padding: 1.2rem;
+}

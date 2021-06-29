@@ -98,7 +98,8 @@ $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
 $courserenderer = $PAGE->get_renderer('core', 'course');
 echo $OUTPUT->header();
-
+if($USER->id==0)
+$_SESSION["popup"] = "";
 $siteformatoptions = course_get_format($SITE)->get_format_options();
 $modinfo = get_fast_modinfo($SITE);
 $modnamesused = $modinfo->get_used_module_names();
