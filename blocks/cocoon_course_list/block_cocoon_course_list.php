@@ -51,10 +51,14 @@ class block_cocoon_course_list extends block_list {
                 <div class="panel-body">
                   <div class="category_sidebar_widget">
                     <ul class="category_list">';
-                    $topcategory = core_course_category::top();
+                    $topcategory = core_course_category::top();     
+                               
                     if ($topcategory->is_uservisible() && ($categories = $topcategory->get_children())) { // Check we have categories.
                       if (count($categories) > 1 || (count($categories) == 1 && $DB->count_records('course') > 200)) {     // Just print top level category links
                         foreach ($categories as $category) {
+                          $exclude = $DB->get_record('course_categories', ['idnumber' => 'mbtmaincategory']);
+                          if($exclude->id==$category->id)
+                          continue;
                           $childCategories = $category->get_children();
                           $childCategories = !empty($childCategories) ? $childCategories : null;
 
@@ -77,8 +81,8 @@ class block_cocoon_course_list extends block_list {
                             $this->content->footer .= '</ul>';
                           }
                           $this->content->footer .= '</li>';
-                        }
-                      }
+                        }                        
+                      }                      
                     } else { // Just print course names of single category
                       $categories = $topcategory->get_children();
                       $category = array_shift($categories);

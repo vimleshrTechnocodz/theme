@@ -146,7 +146,7 @@ class course_renderer extends \core_course_renderer {
   }
 
   public function course_category($category) {
-      global $CFG, $PAGE;
+      global $DB, $CFG, $PAGE;
       $usertop = core_course_category::user_top();
       if (empty($category)) {
           $coursecat = $usertop;
@@ -182,17 +182,23 @@ class course_renderer extends \core_course_renderer {
           $this->page->set_title("$site->shortname: $strfulllistofcourses");
 
           // Print the category selector
-          $categorieslist = core_course_category::make_categories_list();
+          $exclude = $DB->get_record('course_categories', ['idnumber' => 'mbtmaincategory']);
+          if($exclude){
+            $categorieslist = core_course_category::make_categories_list('',$exclude->id);
+          }else{
+            $categorieslist = core_course_category::make_categories_list();
+          }
+          
           // if (count($categorieslist) > 1) {
-          $select = new single_select(new moodle_url('/course/index.php'), 'categoryid', core_course_category::make_categories_list(), $coursecat->id, null, 'switchcategory');
-          // }
+          $select = new single_select(new moodle_url('/course/index.php'), 'categoryid', $categorieslist, $coursecat->id, null, 'switchcategory');
+          // }          
         }
 
         // 202003031234 - check that the user is within a course category and not just on the /courses/index.php page, because below demands a category ID
         if ($coursecat->id && $coursecat->is_uservisible()) {
           if (isset($PAGE->theme->settings->courseliststyle) && ($PAGE->theme->settings->courseliststyle == 2)) {
             // single category view
-            $output .= '<div class="row courses_list_heading">
+            $output .= '<div class="row courses_list_heading ss">
     						<div class="col-xl-3 p0">
     							<div class="instructor_search_result style2">
     								<p class="mt10 fz15"><span class="color-dark pr5">'.$ccnCourseCount.' </span> '.get_string('courses').'</p>

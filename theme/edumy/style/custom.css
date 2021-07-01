@@ -10,10 +10,10 @@
 
 
  .logo-box{
-    -webkit-box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
-    -moz-box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
-    box-shadow: 0px 7px 7px 0px rgba(0,0,0,0.21);
-  padding: 50px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+  padding: 30px;
   text-align: center;
   border-radius: 20px;
   background: #fff;
@@ -47,3 +47,9 @@
 .top-html-block{
     background: #f8f8f8;
 }
+
+.custome-banner-box{
+    background: url(/theme/edumy/images/background/home-banner-bg.jpg) no-repeat left top;
+    background-size: cover;
+    min-height: 600px;
+  }

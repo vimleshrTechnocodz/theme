@@ -113,9 +113,11 @@ class local_mbttutors {
             if(isloggedin() and $USER->id!=1){
                 $data[$key]->link =  '#';
                 $data[$key]->class = 'free-enrol-now';
+                $data[$key]->root = $CFG->wwwroot;
             }else{
                 $data[$key]->link =  $CFG->wwwroot.'/login/index.php';
                 $data[$key]->class = '';
+                $data[$key]->root = $CFG->wwwroot;
             }           
         }
         $results = new stdClass();
@@ -164,6 +166,7 @@ class local_mbttutors {
             $data[$key]->announcementsIcon = $ccnCourse->ccnRender->announcementsIcon;
             $data[$key]->imageUrl = $ccnCourse->imageUrl;
             $data[$key]->link = $CFG->wwwroot.'/course/view.php?id='.$course->id;
+            $data[$key]->root = $CFG->wwwroot;
             if($rated==0){
                 $data[$key]->rated = '<i class="fa fa-star-o"></i> 
                 <i class="fa fa-star-o"></i>
@@ -238,6 +241,7 @@ class local_mbttutors {
             foreach($results as $key=>$result){ 
                 $data[$key] = $result;
                 $data[$key]->link =  $CFG->wwwroot.'/local/mbttutors/?cat_id='.$result->id;
+                $data[$key]->root = $CFG->wwwroot;
             }           
             return $data;
         }
@@ -273,6 +277,7 @@ class local_mbttutors {
                 $data[$key]->lastaccess = date('m/d/Y', $result->lastaccess);
                 $data[$key]->totalCourses = count($tcourses);
                 $data[$key]->link = $CFG->wwwroot."/user/editadvanced.php?id=".$result->userid;
+                $data[$key]->root = $CFG->wwwroot;
             }  
             $toturslist->data = array_values($data);         
             return $toturslist;
