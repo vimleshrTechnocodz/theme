@@ -1282,9 +1282,10 @@ class global_navigation extends navigation_node {
         $this->rootnodes = array();
         if (get_home_page() == HOMEPAGE_SITE) {
             // The home element should be my moodle because the root element is the site
-            if (isloggedin() && !isguestuser()) {  // Makes no sense if you aren't logged in
+            if (isloggedin() && !isguestuser()) { // Makes no sense if you aren't logged in    
+                        
                 $this->rootnodes['home'] = $this->add(get_string('myhome'), new moodle_url('/my/'),
-                    self::TYPE_SETTING, null, 'myhome', new pix_icon('i/dashboard', ''));
+                    self::TYPE_SETTING, null, 'myhome', new pix_icon('i/dashboard', ''));                
                 $this->rootnodes['home']->showinflatnavigation = true;
             }
         } else {
@@ -1297,16 +1298,32 @@ class global_navigation extends navigation_node {
                 $this->rootnodes['home']->action->param('redirect', '0');
             }
         }
+
+
+        /****Custome menu start****/
+
+        if (is_siteadmin()) {
+            $this->rootnodes['tutorslist'] = $this->add("Tutors list", new moodle_url('/local/mbttutors/tutorslist.php'),
+                self::TYPE_SETTING, null, 'myhome', new pix_icon('i/section', ''));
+                $this->rootnodes['tutorslist']->showinflatnavigation = true;
+        }
+
+        $this->rootnodes['coursecatalog'] = $this->add('Course Catalog', new moodle_url('/admin/coursecatalog.php'), self::TYPE_ROOTNODE, null, 'myhome',new pix_icon('i/course', ''));
+        $this->rootnodes['coursecatalog']->showinflatnavigation = true;
+        /****Custome menu end****/
         $this->rootnodes['site'] = $this->add_course($SITE);
         $this->rootnodes['myprofile'] = $this->add(get_string('profile'), null, self::TYPE_USER, null, 'myprofile');
         $this->rootnodes['currentcourse'] = $this->add(get_string('currentcourse'), null, self::TYPE_ROOTNODE, null, 'currentcourse');
         $this->rootnodes['mycourses'] = $this->add(get_string('mycourses'), null, self::TYPE_ROOTNODE, null, 'mycourses', new pix_icon('i/course', ''));
         $this->rootnodes['courses'] = $this->add(get_string('courses'), new moodle_url('/course/index.php'), self::TYPE_ROOTNODE, null, 'courses');
+       
+        
+
         if (!core_course_category::user_top()) {
             $this->rootnodes['courses']->hide();
         }
         $this->rootnodes['users'] = $this->add(get_string('users'), null, self::TYPE_ROOTNODE, null, 'users');
-
+        
         // We always load the frontpage course to ensure it is available without
         // JavaScript enabled.
         $this->add_front_page_course_essentials($this->rootnodes['site'], $SITE);
