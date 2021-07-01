@@ -1301,14 +1301,14 @@ class global_navigation extends navigation_node {
 
 
         /****Custome menu start****/
-
+         
         if (is_siteadmin()) {
-            $this->rootnodes['tutorslist'] = $this->add("Tutors list", new moodle_url('/local/mbttutors/tutorslist.php'),
+            $this->rootnodes['tutorslist'] = $this->add(get_string('tutorlist'), new moodle_url('/local/mbttutors/tutorslist.php'),
                 self::TYPE_SETTING, null, 'myhome', new pix_icon('i/section', ''));
                 $this->rootnodes['tutorslist']->showinflatnavigation = true;
         }
 
-        $this->rootnodes['coursecatalog'] = $this->add('Course Catalog', new moodle_url('/admin/coursecatalog.php'), self::TYPE_ROOTNODE, null, 'myhome',new pix_icon('i/course', ''));
+        $this->rootnodes['coursecatalog'] = $this->add(get_string('coursecatalog'), new moodle_url('/admin/coursecatalog.php'), self::TYPE_ROOTNODE, null, 'myhome',new pix_icon('i/course', ''));
         $this->rootnodes['coursecatalog']->showinflatnavigation = true;
         /****Custome menu end****/
         $this->rootnodes['site'] = $this->add_course($SITE);

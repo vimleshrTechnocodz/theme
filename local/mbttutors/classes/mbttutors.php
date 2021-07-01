@@ -275,9 +275,10 @@ class local_mbttutors {
                 $tcourses = $this->getTutorCourses($result->userid);
                 $data[$key] = $result;
                 $data[$key]->lastaccess = date('m/d/Y', $result->lastaccess);
-                $data[$key]->totalCourses = count($tcourses);
+                $data[$key]->totalCourses = count($tcourses->data);
                 $data[$key]->link = $CFG->wwwroot."/user/editadvanced.php?id=".$result->userid;
                 $data[$key]->root = $CFG->wwwroot;
+                $data[$key]->country = get_string($result->country,'countries');
             }  
             $toturslist->data = array_values($data);         
             return $toturslist;
