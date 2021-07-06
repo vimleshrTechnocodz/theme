@@ -49,7 +49,106 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
 }
 
 .custome-banner-box{
-    background: url(/theme/edumy/images/background/home-banner-bg.jpg) no-repeat left top;
+    background: url(../../theme/edumy/images/background/home-banner-bg.jpg) no-repeat left top;
     background-size: cover;
     min-height: 600px;
+  }
+  header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand span {
+    display: none;
+}
+.logo-widget span {
+    display: none;
+}
+
+
+h1.banner-home-title {
+    font-size: 42px;
+}
+
+
+
+
+
+
+
+
+
+
+/*--------------------RESPONSIVE CSS STARTS-------------------*/
+
+/* Tablets ipad pro */
+@media only screen  and (min-width: 1024px)  and (max-height: 1366px)   and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+
+}
+
+/* Tablets ipad pro */
+@media only screen and (max-width:1024px){
+
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width:800px){
+
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+  /* Big Devices, Phones */
+  @media only screen and (max-width : 540px) {
+
+  }
+
+
+  /* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}
+
+
+  /* Extra Small Devices, Phones */
+  @media only screen and (max-width : 480px) {
+
+    .mobile-menu .header.stylehome1 .main_logo_home2 span {
+        display: none;
+    }
+
+    .custome-banner-box{
+        background: url(../../theme/edumy/images/background/home-banner-bg-m.jpg) no-repeat left top;
+        background-size: contain;
+        min-height: 300px;
+      }
+.banner-title-block {
+        background: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 70px;
+    }
+h1.banner-home-title {
+    font-size: 20px;
+}
+h2.banner-home--sub-title {
+    font-size: 16px;
+}
+.logo-box {
+    margin-bottom: 20px;
+}
+
+
+
+.inner_page_breadcrumb {
+    background-size: contain;
+    padding: 10px;
+    height: 83px;
+}
+.inner_page_breadcrumb .breadcrumb_title {
+    font-size: 20px;
+}
+.ccn_header_style_13.ccn_context_frontend .inner_page_breadcrumb .breadcrumb_content {
+    margin-top: 0;
+}
   }
