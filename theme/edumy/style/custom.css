@@ -181,4 +181,23 @@ h2.banner-home--sub-title {
     height: 350px;
     overflow: scroll;
 }
+.coursebox {
+    width: 100% !important;
+}
+.ccnDashBlCt {
+    padding: 15px 15px;
+}
+.block_lw_courses .coursebox.list .course_image_embed {
+    margin-right: 10px;
+    width: 60px;
+    min-height: 40px;
+}
+
+
+.block_lw_courses .lw_courses_list .coursebox.span12 {
+    padding: 0px;
+}
+.block_lw_courses .lw_courses_list .coursebox.span12 .title {
+    font-size: 16px;
+}
   }

@@ -64,8 +64,8 @@ echo $OUTPUT->header();
     top: 190px;
 }
 .block_lw_courses .lw_courses_list .coursebox:not(.span12) {
-    margin-right: 2% !important;
-    width: 31.3% !important;
+    margin-right: 2%;
+    width: 31.3%;
 }
 </style>
 <script>

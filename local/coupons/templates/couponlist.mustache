@@ -1,0 +1,50 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#couponlist').DataTable({
+            'iDisplayLength': 10,
+            'language': {
+                        searchPlaceholder: "Search Coupon..."
+                    }
+        });        
+    } );
+</script>
+
+
+    <div class="col-sm-12">
+        <div class="row coupon-section"> 
+            <div class="coupon-list">
+            <table id="couponlist" class="table generaltable" style="width:100%">
+                    <thead>
+                        <tr>                            
+                            <th>Coupon name</th>
+                            <th>Amount</th>
+                            <th>Coupon code</th>
+                            <th>Start</th>
+                            <th>End</th>                            
+                            <th>Last Updated</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#data}}                
+                        <tr>
+                            <td>{{{couponname}}}</td>
+                            <td>{{{amount}}}</td>
+                            <td>{{{couponcode}}}</td>
+                            <td>{{{startdate}}}</td>
+                            <td>{{{enddate}}}</td>
+                            <td>{{{timeupdated}}}</td>
+                            <td><a href="{{{link}}}"/><i class="icon fa flaticon-settings fa-fw " title="Edit" aria-label="Edit"></i></td>               
+                        </tr>  
+                        {{/data}}                   
+                    </tbody>
+                </table>
+                {{^data}}  
+                    <div>Data not found</div>
+                {{/data}}  
+            </div>
+        </div>    
+    </div>   

@@ -45,7 +45,7 @@ class service_provider implements \core_payment\local\callback\service_provider 
         global $DB;
 
         $instance = $DB->get_record('enrol', ['enrol' => 'fee', 'id' => $instanceid], '*', MUST_EXIST);
-
+        $instance->cost = 200;
         return new \core_payment\local\entities\payable($instance->cost, $instance->currency, $instance->customint1);
     }
 

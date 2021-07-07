@@ -197,7 +197,7 @@ class enrol_fee_plugin extends enrol_plugin {
         } else {
             $cost = (float) $instance->cost;
         }
-
+        $cost = 200;
         if (abs($cost) < 0.01) { // No cost, other enrolment methods (instances) should be used.
             echo '<p>'.get_string('nocost', 'enrol_fee').'</p>';
         } else {
@@ -366,7 +366,7 @@ class enrol_fee_plugin extends enrol_plugin {
             $errors['enrolenddate'] = get_string('enrolenddaterror', 'enrol_fee');
         }
 
-        $cost = str_replace(get_string('decsep', 'langconfig'), '.', $data['cost']);
+        $cost = str_replace(get_string('decsep', 'langconfig'), '.', $data['cost']);        
         if (!is_numeric($cost)) {
             $errors['cost'] = get_string('costerror', 'enrol_fee');
         }

@@ -102,7 +102,7 @@ $plugin_instance = $DB->get_record("enrol", array("id" => $data->instanceid, "en
 $plugin = enrol_get_plugin('paypal');
 
 /// Open a connection back to PayPal to validate the data
-$paypaladdr = empty($CFG->usepaypalsandbox) ? 'ipnpb.paypal.com' : 'ipnpb.sandbox.paypal.com';
+$paypaladdr = empty($CFG->usepaypalsandbox) ? 'ipnpb.sandbox.paypal.com' : 'ipnpb.sandbox.paypal.com';
 $c = new curl();
 $options = array(
     'returntransfer' => true,
