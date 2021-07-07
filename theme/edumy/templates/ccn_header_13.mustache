@@ -50,11 +50,15 @@
         </button>
       </div>
       {{#logo}}
-        <a href="{{{ ccnLogoUrl }}}" class="navbar_brand float-left dn-smd">
+        <span  class="navbar_brand float-left dn-smd">
           {{#logo_image}}<img class="logo1 img-fluid" src="{{{headerlogo2}}}{{!output.get_logo_url}}" alt="{{sitename}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
           {{#logo_image}}<img class="logo2 img-fluid" src="{{{headerlogo2}}}{{!output.get_logo_url}}" alt="{{sitename}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
           {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
-        </a>
+          <span class="customelogo-link">
+            <a href="/course/index.php?categoryid=3"></a>
+            <a href="/local/mbttutors/"></a>
+          </span>
+        </span>
       {{/logo}}
       {{#display_library_list}}
         <ul class="mt20 pull-left mr20 ml10">

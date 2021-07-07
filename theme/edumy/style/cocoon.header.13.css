@@ -11,13 +11,13 @@ header.ccnHeader13.header-nav.menu_style_home_six {
   -o-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
 }
-header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand {
+header.ccnHeader13.header-nav.menu_style_home_six .navbar_brand {
   margin-top: 10px;
 }
 header.ccnHeader13.header-nav.menu_style_home_six.stricky-fixed .cart_btnes.home4 a.btn.cart_btn {
   color: #0a0a0a;
 }
-header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand span {
+header.ccnHeader13.header-nav.menu_style_home_six .navbar_brand span {
   color: #0a0a0a;
   font-weight: bold;
   font-size: 22px;
@@ -31,10 +31,10 @@ header.ccnHeader13.header-nav.menu_style_home_six.stricky-fixed {
   border-bottom: none;
   padding: 10px 0;
 }
-header.ccnHeader13.header-nav.menu_style_home_six.stricky-fixed a.navbar_brand span {
+header.ccnHeader13.header-nav.menu_style_home_six.stricky-fixed .navbar_brand span {
   color: #0a0a0a;
 }
-header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand:before {
+header.ccnHeader13.header-nav.menu_style_home_six .navbar_brand:before {
   background-color: transparent !important;
 }
 header.ccnHeader13.header-nav.menu_style_home_six .ace-responsive-menu>li>a {
@@ -87,7 +87,7 @@ header.ccnHeader13.header-nav.menu_style_home_six .ace-responsive-menu li ul.sub
 header.ccnHeader13.header-nav.menu_style_home_six .ace-responsive-menu li a {
   color: #251730;
 }
-header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand:before {
+header.ccnHeader13.header-nav.menu_style_home_six .navbar_brand:before {
   background-color: transparent;
 }
 header.ccnHeader13.header-nav.menu_style_home_six .sign_up_btn .btn {

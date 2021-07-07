@@ -49,11 +49,11 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
 }
 
 .custome-banner-box{
-    background: url(../../theme/edumy/images/background/home-banner-bg.jpg) no-repeat left top;
+    background: url(/theme/theme/edumy/images/background/home-banner-bg.jpg) no-repeat left top;
     background-size: cover;
     min-height: 600px;
   }
-  header.ccnHeader13.header-nav.menu_style_home_six a.navbar_brand span {
+  header.ccnHeader13.header-nav.menu_style_home_six .navbar_brand span {
     display: none;
 }
 .logo-widget span {
@@ -65,10 +65,27 @@ h1.banner-home-title {
     font-size: 42px;
 }
 
+.inner_page_breadcrumb:before {
+    background-image: -moz-linear-gradient(135deg,#333333 0%,#333333 100%);
+    background-image: -webkit-linear-gradient(
+135deg
+,#333333 0%,#333333 100%);
+    background-image: -ms-linear-gradient(135deg,#333333 0%,#333333 100%);
+}
 
-
-
-
+.customelogo-link{
+    display: flex !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.customelogo-link a{
+    flex: 1;
+}
 
 
 
@@ -118,7 +135,7 @@ h1.banner-home-title {
     }
 
     .custome-banner-box{
-        background: url(../../theme/edumy/images/background/home-banner-bg-m.jpg) no-repeat left top;
+        background: url(/theme/theme/edumy/images/background/home-banner-bg-m.jpg) no-repeat left top;
         background-size: contain;
         min-height: 300px;
       }
@@ -150,5 +167,18 @@ h2.banner-home--sub-title {
 }
 .ccn_header_style_13.ccn_context_frontend .inner_page_breadcrumb .breadcrumb_content {
     margin-top: 0;
+}
+
+#tutors_wrapper>.row:first-child {
+    padding: 15px;
+}
+.tutor-list .dataTables_filter .form-control.form-control-sm {
+    right: inherit !important;
+    left: 5px;
+    width: 91% !important;
+}
+.modal-body {
+    height: 350px;
+    overflow: scroll;
 }
   }
